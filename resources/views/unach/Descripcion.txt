@@ -1,0 +1,12 @@
+hise las interfaces de letty al doctor y del doctor a letty:
+
+la interfaz letty: recibe las Solicitudes de cartas (formato2) que envian los alumnos para el registro y validacion
+	de su proyecto. Tambien en la parte de abajo permite seleccionar y subir el archivo que se ha redactado de
+	forma libre para enviarlo al doctor.
+
+la interfaz doctor: recibe las cartas redactadas de forma libre por letty (formatos3) para su revision y aprovacion.
+	si esta no tiene ningun error u observacion se aprueba y se envia a la directora pero si esta tiene un error 
+	se escribe la observacion y se regresa a letty para su correcion.
+
+la interfaz directora: recibe las cartas que han sido aprobadas por el doctor (formatos3) para la ultima aprovacion y
+	enviarla a la rectoria.
