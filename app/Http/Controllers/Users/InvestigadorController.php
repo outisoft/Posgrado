@@ -43,7 +43,17 @@ class InvestigadorController extends Controller
     }
     public function documents()
     {
-        return view('users.investigador.documents');
+
+        $usera = auth()->user();
+        //dd($usera->rol);
+        if($usera->rol == 'Investigador')
+        {
+            return view('users.investigador.documents');
+        }
+        else
+        {
+            $this->authorize('haveaccess','users.investigador.documents');
+        }
     }
 
     /**

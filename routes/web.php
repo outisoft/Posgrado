@@ -35,6 +35,7 @@ Route::resource('/user', 'UserController', ['except'=>[
                  /* USUARIOS */
 /* Investigador */
 Route::resource('/investigador', 'Users\InvestigadorController')->names('investigador');
+Route::get('/investigador', 'Users\InvestigadorController@documents')->name('investigador.documents');
 
 /* Coordinador */
 Route::resource('/coordinador', 'Users\CoordinadorController')->names('coordinador');
