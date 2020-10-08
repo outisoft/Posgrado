@@ -56,6 +56,11 @@ class InvestigadorController extends Controller
         }
     }
 
+    public function progreso()
+    {
+        return view('users.investigador.progreso');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
