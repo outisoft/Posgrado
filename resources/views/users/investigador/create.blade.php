@@ -46,8 +46,11 @@
       <div class="form-group">
         <label for="sender_id">De: {{ Auth::user()->name }}</label>
       </div>
+
       <form method="POST" action="{{ route('investigador.store') }}">
         {{ csrf_field() }}
+
+        <!-- Receptor (Start) -->
         <div class="panel-body">
           <div class="form-group">Para:
             <select name="recipient_id" class="form-control">
@@ -58,11 +61,22 @@
             </select>
           </div>
         </div>
+        <!-- Receptor (Start)-->
 
+        <!-- Name (Start)-->
+        <div class="panel-body">
+          <div class="form-group">Nombre del proyecto:
+            <input name="name" type="text" class="form-control form-control-user" placeholder="Nombre del proyecto...">
+          </div>
+        </div>
+        <!-- Name (Finish) -->
+
+        <!-- Documento (Start)-->
         <div class="form-group">
           <label for="documento">Seleccionar Documento(.pdf)</label>
           <input name="documento" type="file"></input>
         </div>
+        <!-- Documento (Finish)-->
 
         <button class="btn btn-primary">Enviar Solicitud...</button>
       </form>

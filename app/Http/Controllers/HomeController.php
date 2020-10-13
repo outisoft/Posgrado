@@ -54,7 +54,8 @@ class HomeController extends Controller
       }
       if($user->rol == "DGIP")
       {
-          return view("users.dgip.index");
+          $documento = Document::orderBy('id','Desc')->paginate(10);
+          return view("users.dgip.index", ['documento'=>$documento]);
       }
       else
       {

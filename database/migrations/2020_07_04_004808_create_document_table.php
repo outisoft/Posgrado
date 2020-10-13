@@ -16,6 +16,7 @@ class CreateDocumentTable extends Migration
         Schema::create('document', function (Blueprint $table) {
             $table->id();
             $table->string('documento');
+            $table->string('name');
             $table->unsignedBigInteger('sender_id')->unsigned()->nullable()->default(null);
             $table->unsignedBigInteger('recipient_id')->unsigned()->nullable()->default(null);
             $table->timestamps();

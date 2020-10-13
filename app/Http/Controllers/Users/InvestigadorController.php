@@ -73,6 +73,7 @@ class InvestigadorController extends Controller
           $user = auth()->user();
           $document = new Investigador();
           $document->documento = $request->documento;
+          $document->name = $request->name;
           $document->sender_id = $user->id;
           $document->recipient_id = $request->recipient_id;
           $document->save();
