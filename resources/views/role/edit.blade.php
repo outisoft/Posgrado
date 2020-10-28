@@ -2,13 +2,14 @@
 
 @section('content')
 <div class="container">
+  <main class="py-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header"><h2>Edit Role</h2></div>
 
                 <div class="card-body">
-                   @include('custom.message')  
+                   @include('custom.message')
                     <form action="{{ route('role.update', $role->id)}}" method="POST">
                      @csrf
                      @method('PUT')
@@ -111,5 +112,6 @@
             </div>
         </div>
     </div>
+  </main>
 </div>
 @endsection

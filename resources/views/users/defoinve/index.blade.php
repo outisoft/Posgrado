@@ -40,7 +40,7 @@
               <tr>
                 <td>{{ $documentos->name}}</td>
                 <td>Proyecto {{ $documentos->id}} </td>
-                <td><a target="_blank" href="#"><i class="bx bx-bullseye"></i></a></td>
+                <td><a href="{{ url('defoinve/view') }}"><i class="bx bx-bullseye"></i></a></td>
                 <td><a target="_blank" href="#"><i class="bx bxs-download"></i></a></td>
               </tr>
               @endforeach

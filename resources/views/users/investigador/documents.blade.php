@@ -34,19 +34,11 @@
                 </tfoot>
                 <tbody>
                   <tr>
-                    <td>Tiger Nixon</td>
+                    <td>Documento #1</td>
                     <td><a target="_blank" href="#"><i class="bx bxs-download"></i></a></td>
                   </tr>
                   <tr>
-                    <td>Garrett Winters</td>
-                    <td><a target="_blank" href="#"><i class="bx bxs-download"></i></a></td>
-                  </tr>
-                  <tr>
-                    <td>Ashton Cox</td>
-                    <td><a target="_blank" href="#"><i class="bx bxs-download"></i></a></td>
-                  </tr>
-                  <tr>
-                    <td>Cedric Kelly</td>
+                    <td>Documento #2</td>
                     <td><a target="_blank" href="#"><i class="bx bxs-download"></i></a></td>
                   </tr>
                 </tbody>

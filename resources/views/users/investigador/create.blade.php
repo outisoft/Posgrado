@@ -73,12 +73,18 @@
 
         <!-- Documento (Start)-->
         <div class="form-group">
-          <label for="documento">Seleccionar Documento(.pdf)</label>
+          <label for="documento">Seleccionar Solicitud(.pdf)</label>
           <input name="documento" type="file"></input>
         </div>
         <!-- Documento (Finish)-->
+        <!-- Anexos (Start)-->
+        <div class="form-group">
+          <label for="anexo">Seleccionar Anexos(.pdf)</label>
+          <input name="anexo" type="file"></input>
+        </div>
+        <!-- Anexos (Finish)-->
 
-        <button class="btn btn-primary">Enviar Solicitud...</button>
+        <button class="btn btn-primary">Enviar Solicitud</button>
       </form>
     </div>
   </div>

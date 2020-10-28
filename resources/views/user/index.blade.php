@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+  <main class="py-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -10,7 +11,7 @@
                 <div class="card-body">  <br><br>
 
                     @include('custom.message')
-                    
+
                     <table class="table table-hover">
                         <thead>
                           <tr>
@@ -62,5 +63,6 @@
             </div>
         </div>
     </div>
+  </main>
 </div>
 @endsection
