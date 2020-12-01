@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Document;
+use App\validation;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,12 +51,16 @@ class HomeController extends Controller
       if($user->rol == "DI")
       {
           $documento = Document::orderBy('id','Desc')->paginate(10);
-          return view("users.di.index", ['documento'=>$documento]);
+          $validacion = validation::orderBy('id','Desc')->paginate(10);
+
+          return view("users.di.index", ['documento'=>$documento], ['validacion'=>$validacion]);
+
       }
       if($user->rol == "DGIP")
       {
           $documento = Document::orderBy('id','Desc')->paginate(10);
-          return view("users.dgip.index", ['documento'=>$documento]);
+          $validacion = validation::orderBy('id','Desc')->paginate(10);
+          return view("users.dgip.index", ['documento'=>$documento], ['validacion'=>$validacion]);
       }
       else
       {

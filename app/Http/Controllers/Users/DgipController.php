@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Users;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Document;
-use Illuminate\Support\Facades\Storage;
+use App\validation;
 
-class LatterController extends Controller
+class DgipController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class LatterController extends Controller
      */
     public function index()
     {
-        return view('letter.index');
+        //
     }
 
     /**
@@ -28,11 +29,6 @@ class LatterController extends Controller
         //
     }
 
-    public function download()
-    {
-       return Storage::download('file.jpg');
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -41,7 +37,7 @@ class LatterController extends Controller
      */
     public function store(Request $request)
     {
-      //
+        //
     }
 
     /**
@@ -50,11 +46,10 @@ class LatterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Document $dgip)
     {
-      //dd($id);
-        $dl = Document::find($id);
-        return Storage::download($dl->id, $dl->name);
+      $documento = Document::orderBy('name')->get();
+      return view("users.dgip.view", compact('documento', 'dgip'));
     }
 
     /**
@@ -75,9 +70,14 @@ class LatterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Document $dgip)
     {
-        //
+        $validation = validation::find($dgip->id);
+        $validation->val_dgip = '1';
+        $validation->update($request->only('val_dgip'));
+
+        return redirect('home')
+          ->with('status_success','Documento validado correctamente');
     }
 
     /**

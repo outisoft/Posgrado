@@ -35,15 +35,20 @@
     <link href="css/style.css" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     UNACH
                 </a>
+
+
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -67,13 +72,36 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{ url('/home') }}">Inicio</a>
+                        </li>
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        @if (Auth::user()->rol != 'Investigador')
+
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{ route('aprobados')}}">Aprobados</a>
+                        </li>
+                        <div class="topbar-divider d-none d-sm-block"></div>
+                        <li class="nav-item">
+                          <a class="nav-link" href="#">Rechazados</a>
+                        </li>
+                        <div class="topbar-divider d-none d-sm-block"></div>
+                        @endif
+
+
+
+                            <li class="nav-item dropdown no-arrow">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                  <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                                     <span class="caret"></span>
+                                  <img class="img-profile bd-placeholder-img rounded-circle" width="20px" src="{{ Storage::url(Auth::user()->avatar) }}">
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                  <a class="dropdown-item" href="#">
+                                  <a class="dropdown-item" href="{{ route('perfil.show', Auth::user()->id)}}">
                                       {{ __('Perfil') }}
                                   </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -97,5 +125,6 @@
     <!--main class="py-4">
 
     </main-->
+
 </body>
 </html>

@@ -6,19 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
-    protected $table = 'document';
+    //protected $table = 'documents';
 
     protected $fillable = [
         'documento', 'sender_id', 'recipient_id',
       ];
 
-      /*public function users()
+
+      public function users()
       {
         return $this->belongsToMany('App\User')->withTimesTamps();
-      }*/
+      }
 
-      /*public function permissions()
+      public function permissions()
       {
         return $this->belongsToMany('App\Permission\Models\Permission')->withTimesTamps();
-      S}*/
+      }
 }

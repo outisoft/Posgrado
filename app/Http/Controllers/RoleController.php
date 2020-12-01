@@ -57,7 +57,7 @@ class RoleController extends Controller
           $role->permissions()->sync($request->get('permission'));
 
           return redirect()->route('role.index')
-            ->with('status_success','Role saved successfully');
+            ->with('status_success','Rol guardado correctamente');
     }
 
     /**
@@ -68,6 +68,7 @@ class RoleController extends Controller
      */
      public function show(Role $role)
      {
+       //dd($role);
          $this->authorize('haveaccess','role.show');
 
          $permission_role=[];
@@ -127,7 +128,7 @@ class RoleController extends Controller
              $role->permissions()->sync($request->get('permission'));
          //}
          return redirect()->route('role.index')
-             ->with('status_success','Role updated successfully');
+             ->with('status_success','Role actualizado correctamente');
      }
 
     /**

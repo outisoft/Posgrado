@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
-use App\Investigador;
+use App\Document;
+use App\validation;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class InvestigadorController extends Controller
 {
@@ -43,7 +45,6 @@ class InvestigadorController extends Controller
     }
     public function documents()
     {
-
         $usera = auth()->user();
         //dd($usera->rol);
         if($usera->rol == 'Investigador')
@@ -58,7 +59,18 @@ class InvestigadorController extends Controller
 
     public function progreso()
     {
-        return view('users.investigador.progreso');
+        $document = Document::orderBy('id')->get();
+        $validation = validation::orderBy('id')->get();
+        return view('users.investigador.progreso', compact('validation', 'document'));
+    }
+
+    public function historial()
+    {
+        $user = auth()->user();
+        $documents = Document::orderBy('id')->get();
+        $validation = validation::orderBy('id')->get();
+        //dd($document);
+        return view('users.investigador.historial', compact('user', 'documents', 'validation'));
     }
 
     /**
@@ -71,14 +83,30 @@ class InvestigadorController extends Controller
     {
       //dd($request);
           $user = auth()->user();
-          $document = new Investigador();
-          $document->documento = $request->documento;
+          $document = new Document();
+          //$path = Storage::putFile('public', $request->file('documento'));
+
+          $document->documento = $request->file('documento')->store('public/documentos');
           $document->name = $request->name;
           $document->sender_id = $user->id;
           $document->recipient_id = $request->recipient_id;
+
+          //dd($request);
+
           $document->save();
 
-          return view('users.investigador.index');
+          $validation = new validation();
+          $validation->id_document = $document->id;
+          $validation->val_defoinve = '0';
+          $validation->val_di = '0';
+          $validation->val_dgip = '0';
+
+          $validation->save();
+
+          //return back()->route('users.investigador.index')
+            //  ->with('status_success','Solicitud enviada');
+
+          return view('users.investigador.index')->with('status_success','Solicitud enviada');
     }
 
     /**
@@ -87,9 +115,11 @@ class InvestigadorController extends Controller
      * @param  \App\Investigador  $investigador
      * @return \Illuminate\Http\Response
      */
-    public function show(Investigador $investigador)
+    public function show(Document $investigador)
     {
-        //
+      //dd($investigador);
+        $documento = Document::orderBy('id','Desc')->get();
+        return view('users.investigador.view', compact('documento', 'investigador'));
     }
 
     /**

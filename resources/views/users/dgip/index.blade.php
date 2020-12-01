@@ -21,26 +21,32 @@
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
-                <th>Nombre del proyecto</th>
-                <th>No</th>
+                <th>Nombre</th>
+                <th>Fecha</th>
                 <th>Ver</th>
               </tr>
             </thead>
             <tfoot>
               <tr>
-                <th>Name</th>
-                <th>No</th>
+                <th>Nombre</th>
+                <th>Fecha</th>
                 <th>Ver</th>
               </tr>
             </tfoot>
             <tbody>
-              @foreach ($documento as $documentos)
-              <tr>
-                <td>{{ $documentos->name}}</td>
-                <td>Proyecto {{ $documentos->id}} </td>
-                <td><a target="_blank" href="#"><i class="bx bx-bullseye"></i></a></td>
-              </tr>
-              @endforeach
+              @foreach ($validacion as $validations)
+                @if($validations->val_defoinve == 1 && $validations->val_di == 1)
+                @foreach ($documento as $documentos)
+                 @if($documentos->id == $validations->id_document)
+                    <tr>
+                      <td>{{ $documentos->name}}</td>
+                      <td>{{ $documentos->created_at->day}}-{{ $documentos->created_at->month}}-{{ $documentos->created_at->year}}</td>
+                      <td><a class="btn btn-info" href="{{ route('dgip.show', $documentos->id)}}">Ver</a></td>
+                    </tr>
+                    @endif
+                  @endforeach
+                  @endif
+               @endforeach
             </tbody>
           </table>
         </div>

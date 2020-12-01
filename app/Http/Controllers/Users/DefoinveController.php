@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Users;
 
 use App\Investigador;
+use App\Document;
+use App\validation;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -28,6 +30,13 @@ class DefoinveController extends Controller
         //
     }
 
+    public function aprobados()
+    {
+        $doc = Document::get();
+        $validar = validation::get();
+        return view('users.defoinve.aprobados', compact('doc', 'validar'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -45,11 +54,12 @@ class DefoinveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Document $defoinve)
     {
-      return view('users.defoinve.view');
-      //$documento = Document::orderBy('id','Desc')->paginate(10);
-      //return view("users.defoinve.view", ['documento'=>$documento]);
+      //return view('users.defoinve.view');
+      $documento = Document::orderBy('name')->get();
+      //dd($defoinve);
+      return view("users.defoinve.view", compact('documento', 'defoinve'));
     }
 
     /**
@@ -70,9 +80,29 @@ class DefoinveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Document $defoinve)
     {
-        //
+      //$documento = Document::get();
+
+
+
+
+      $validation = validation::find($defoinve->id);
+            //dd($validation);
+
+      //$validation->id_document = $defoinve->id;
+      $validation->val_defoinve = '1';
+      $validation->update($request->only('val_defoinve'));
+
+      //dd($validation);
+      //$validation->val_di = '0';
+      //$validation->val_dgip = '0';
+
+      //$validation->update();
+
+      //return redirect()->route("users.defoinve.index");
+      return redirect('home')
+        ->with('status_success','Documento validado correctamente');
     }
 
     /**

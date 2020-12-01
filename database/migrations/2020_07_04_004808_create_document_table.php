@@ -13,10 +13,11 @@ class CreateDocumentTable extends Migration
      */
     public function up()
     {
-        Schema::create('document', function (Blueprint $table) {
+        Schema::create('documents', function (Blueprint $table) {
             $table->id();
             $table->string('documento');
             $table->string('name');
+            //$table->string('anexos');
             $table->unsignedBigInteger('sender_id')->unsigned()->nullable()->default(null);
             $table->unsignedBigInteger('recipient_id')->unsigned()->nullable()->default(null);
             $table->timestamps();

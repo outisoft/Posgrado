@@ -11,25 +11,13 @@
                 <div class="card-body">
                    @include('custom.message')
 
-
-
                     <form action="{{ route('user.update', $user->id)}}" method="POST">
                      @csrf
                      @method('PUT')
-
                      <div class="container">
-
-
-
                           <h3>Required data</h3>
-
                          <div class="form-group">
-                            <input type="text" class="form-control"
-                            id="name"
-                            placeholder="Name"
-                            name="name"
-                            value="{{ old('name', $user->name)}}"
-                            disabled>
+                            <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="{{ old('name', $user->name)}}"  disabled>
                           </div>
                           <div class="form-group">
                             <input type="text"
@@ -50,16 +38,11 @@
                                       selected
                                     @endif
                                   @endisset
-
-
                                 >{{ $role->name }}</option>
                               @endforeach
                             </select>
                           </div>
-
-
                           <hr>
-
                           <a class="btn btn-success" href="{{route('user.edit',$user->id)}}">Edit</a>
                           <a class="btn btn-danger" href="{{route('user.index')}}">Back</a>
                      </div>

@@ -47,26 +47,40 @@
         <label for="sender_id">De: {{ Auth::user()->name }}</label>
       </div>
 
-      <form method="POST" action="{{ route('investigador.store') }}">
+      <form method="POST" action="{{ route('investigador.store') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
+
+        <!--div class="form-group">
+          @foreach ($users as $user)
+           @if($user->rol == "DEFOINVE" || $user->rol == "Defoinve")
+             <label for="recipient_id">Para: {{ $user->name}} de: {{ $user->rol}}</label>
+
+           @endif
+          @endforeach
+        </div-->
 
         <!-- Receptor (Start) -->
         <div class="panel-body">
           <div class="form-group">Para:
-            <select name="recipient_id" class="form-control">
-              <option value="">selecionar usuario</option>
+
+
               @foreach ($users as $user)
-              <option value="{{ $user->id}}">{{ $user->name}}</option>
+              @if($user->rol == "DEFOINVE" || $user->rol == "Defoinve")
+                <select name="recipient_id" class="form-control">
+                  <option value="{{ $user->id}}">{{ $user->name}}</option>
+                </select>
+
+              @endif
               @endforeach
-            </select>
+
           </div>
         </div>
         <!-- Receptor (Start)-->
 
         <!-- Name (Start)-->
         <div class="panel-body">
-          <div class="form-group">Nombre del proyecto:
-            <input name="name" type="text" class="form-control form-control-user" placeholder="Nombre del proyecto...">
+          <div class="form-group">Nombre de la solicitud:
+            <input name="name" type="text" class="form-control form-control-user" placeholder="Nombre de la solicitud...">
           </div>
         </div>
         <!-- Name (Finish) -->

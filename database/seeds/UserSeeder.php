@@ -48,6 +48,38 @@ class UserSeeder extends Seeder
 
         ]);
 
+        //rol investigador
+        $roleinve=Role::create([
+          'name' => 'Investigador',
+          'slug' => 'investigador',
+          'description' => 'Profesor/Investigador',
+          'full-access' => 'no'
+        ]);
+
+        //rol DEFOINVE
+        $roledefoinve=Role::create([
+          'name' => 'Defoinve',
+          'slug' => 'defoinve',
+          'description' => 'Departamento de fomento a la investigacion ',
+          'full-access' => 'no'
+        ]);
+
+        //rol direccion de investigacion
+        $roleinve=Role::create([
+          'name' => 'Direccion de Investigacion',
+          'slug' => 'di',
+          'description' => 'Direccion de investigacion',
+          'full-access' => 'no'
+        ]);
+
+        //rol Direccion General (DGIP)
+        $roleinve=Role::create([
+          'name' => 'DGIP',
+          'slug' => 'dgip',
+          'description' => 'Direcion General de investigacion y posgrado',
+          'full-access' => 'no'
+        ]);
+
         //table role_user
         $useradmin->roles()->sync([ $roladmin->id ]);
 
@@ -148,7 +180,14 @@ class UserSeeder extends Seeder
             'slug' => 'userown.edit',
             'description' => 'A user can edit own user',
         ]);
+        $permission_all[] = $permission->id;
 
+        $permission = Permission::create([
+            'name' => 'Delete own user',
+            'slug' => 'userown.destroy',
+            'description' => 'A user can destroy own user',
+        ]);
+        $permission_all[] = $permission->id;
 
         //permission application latter
         $permission = Permission::create([

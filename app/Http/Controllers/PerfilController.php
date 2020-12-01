@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Document;
-use Illuminate\Support\Facades\Storage;
+use App\User;
 
-class LatterController extends Controller
+class PerfilController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class LatterController extends Controller
      */
     public function index()
     {
-        return view('letter.index');
+        return view('perfil.index');
     }
 
     /**
@@ -28,11 +27,6 @@ class LatterController extends Controller
         //
     }
 
-    public function download()
-    {
-       return Storage::download('file.jpg');
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -41,7 +35,7 @@ class LatterController extends Controller
      */
     public function store(Request $request)
     {
-      //
+        //
     }
 
     /**
@@ -52,9 +46,12 @@ class LatterController extends Controller
      */
     public function show($id)
     {
-      //dd($id);
-        $dl = Document::find($id);
-        return Storage::download($dl->id, $dl->name);
+        $user = auth()->user();
+
+        if($user->id == $id)
+        {
+            return view('perfil.index', compact('user'));
+        }
     }
 
     /**
@@ -65,7 +62,12 @@ class LatterController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = auth()->user();
+
+        if($user->id == $id)
+        {
+            return view('perfil.edit', compact('user'));
+        }
     }
 
     /**
@@ -77,7 +79,18 @@ class LatterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //dd($request);
+
+        $user = User::findOrFail($id);
+        //$this->authorize($user);
+        if($request->hasFile('avatar'))
+        {
+          $user->avatar = $request->file('avatar')->store('public/avatar');
+        }
+
+        $user->update($request->only('name','email'));
+
+        return back()->with('status_success', 'Usuario Actualizado Correctamente');
     }
 
     /**

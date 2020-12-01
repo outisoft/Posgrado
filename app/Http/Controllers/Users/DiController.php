@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Document;
+use App\validation;
 
 class DiController extends Controller
 {
@@ -44,9 +46,13 @@ class DiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Document $di)
     {
-        //
+        //dd($di);
+
+        $documento = Document::orderBy('name')->get();
+
+        return view("users.di.view", compact('documento', 'di'));
     }
 
     /**
@@ -67,9 +73,14 @@ class DiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Document $di)
     {
-        //
+      $validation = validation::find($di->id);
+      $validation->val_di = '1';
+      $validation->update($request->only('val_di'));
+
+      return redirect('home')
+        ->with('status_success','Documento validado correctamente');
     }
 
     /**

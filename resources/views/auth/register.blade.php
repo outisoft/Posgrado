@@ -72,9 +72,8 @@
 
             <select id="rol" class="btn btn-secondary dropdown-toggle form-control @error('password') is-invalid @enderror" placeholder="Rol" type="rol"  name="rol" value="{{ old('rol') }}">
               <option value='Investigador'>Investigador</option>
-              <option value='Coordinador'>Coordinador</option>
-              <option value='DEFOINVE'>DEFOINVE</option>
-              <option value='DI'>DI</option>
+              <option value='DEFOINVE'>Defoinve</option>
+              <option value='DI'>Direccion de Investigacion</option>
               <option value='DGIP'>DGIP</option>
             </select>
             <div class="col-md-6">

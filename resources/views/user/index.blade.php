@@ -1,18 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
-  <main class="py-4">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header"><h2>List of Users</h2></div>
-
-                <div class="card-body">  <br><br>
-
-                    @include('custom.message')
-
-                    <table class="table table-hover">
+  <div class="row justify-content-center">
+    <main class="py-4">
+      <div class="container-fluid">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3"><h2>List of Users</h2></div>
+            <div class="card-body">  <br><br>
+              @include('custom.message')
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                           <tr>
                             <th scope="col">#</th>
@@ -54,15 +54,17 @@
                                   </form>
                                 @endcan
                                 </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                      </table>
-                      {{ $users->links() }}
-                  </div>
+                              </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+                {{ $users->links() }}
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-  </main>
+      </div>
+    </main>
+  </div>
 </div>
 @endsection

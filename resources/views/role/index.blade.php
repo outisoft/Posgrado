@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+
+
 <div class="container">
-  <main class="py-4">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header"><h2>List of Roles</h2></div>
+  <div class="row justify-content-center">
+    <main class="py-4">
+      <div class="container-fluid">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3"><h2>List of Roles</h2></div>
 
                 <div class="card-body">
                 @can('haveaccess','role.create')
@@ -65,10 +67,11 @@
                             </tbody>
                       </table>
                       {{ $roles->links() }}
-                </div>
-            </div>
+
+          </div>
         </div>
-    </div>
-  </main>
+      </div>
+    </main>
+  </div>
 </div>
 @endsection
