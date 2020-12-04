@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Document;
+use App\validation;
 use Illuminate\Support\Facades\Storage;
 
 class LatterController extends Controller
@@ -26,6 +27,13 @@ class LatterController extends Controller
     public function create()
     {
         //
+    }
+
+    public function denegados()
+    {
+      $doc = Document::get();
+      $validar = validation::get();
+       return view('documents.denegados', compact('doc', 'validar'));
     }
 
     public function download()
@@ -75,9 +83,22 @@ class LatterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Document $documento)
     {
-        //
+        //descripcion
+
+        $denegar = Document::find($documento->id);
+        $denegar->descripcion = $request->descripcion;
+        $denegar->update($request->only('descripcion'));
+
+        //dd($request);
+
+        /*$validation = validation::find($defoinve->id);
+        $validation->val_defoinve = '1';
+        $validation->update($request->only('val_defoinve'));*/
+
+        return redirect('home')
+          ->with('status_success','Documento Denegado');
     }
 
     /**

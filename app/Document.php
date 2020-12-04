@@ -9,7 +9,7 @@ class Document extends Model
     //protected $table = 'documents';
 
     protected $fillable = [
-        'documento', 'sender_id', 'recipient_id',
+        'documento', 'anexos', 'descripcion', 'sender_id', 'recipient_id',
       ];
 
 

@@ -12,6 +12,7 @@
 
           <h2>{{ $user->name}}</h2>
           <p>Correo: {{ $user->email}}</p>
+          <p>Adscripcion: {{ $user->adscripcion}}</p>
           <p>Role: {{ $user->rol}}</p>
           <p><a class="btn btn-secondary" href="{{ route('perfil.edit', Auth::user()->id )}}" role="button">Editar &raquo;</a></p>
 

@@ -36,9 +36,13 @@
 
           <div class="my-2"></div>
           <hr>
-            <div class="col-md-4 mb-2">
-  						<button type="button" class="btn btn-danger btn-lg btn-block">Denegar</button>
-  					</div>
+          <div class="col-md-4 mb-2">
+            @foreach ($documento as $doc)
+              @if ($dgip->id == $doc->id)
+              <a class="btn btn-danger btn-lg btn-block" href="{{ route('denegar', $doc->id)}}">Denegar</a>
+              @endif
+            @endforeach
+          </div>
             <div class="my-2"></div>
               <hr>
           </div>

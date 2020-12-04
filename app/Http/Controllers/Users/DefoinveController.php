@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Users;
 use App\Investigador;
 use App\Document;
 use App\validation;
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -35,6 +36,12 @@ class DefoinveController extends Controller
         $doc = Document::get();
         $validar = validation::get();
         return view('users.defoinve.aprobados', compact('doc', 'validar'));
+    }
+    public function denegar(Document $defoinve)
+    {
+      //dd($defoinve);
+       $users =  User::get();
+       return view('users.defoinve.denegar', compact('defoinve', 'users'));
     }
 
     /**
@@ -84,23 +91,10 @@ class DefoinveController extends Controller
     {
       //$documento = Document::get();
 
-
-
-
       $validation = validation::find($defoinve->id);
-            //dd($validation);
-
-      //$validation->id_document = $defoinve->id;
       $validation->val_defoinve = '1';
       $validation->update($request->only('val_defoinve'));
 
-      //dd($validation);
-      //$validation->val_di = '0';
-      //$validation->val_dgip = '0';
-
-      //$validation->update();
-
-      //return redirect()->route("users.defoinve.index");
       return redirect('home')
         ->with('status_success','Documento validado correctamente');
     }

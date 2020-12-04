@@ -87,6 +87,10 @@ class InvestigadorController extends Controller
           //$path = Storage::putFile('public', $request->file('documento'));
 
           $document->documento = $request->file('documento')->store('public/documentos');
+          if($request->hasFile('anexo'))
+          {
+            $document->anexos = $request->file('anexo')->store('public/anexos');
+          }
           $document->name = $request->name;
           $document->sender_id = $user->id;
           $document->recipient_id = $request->recipient_id;

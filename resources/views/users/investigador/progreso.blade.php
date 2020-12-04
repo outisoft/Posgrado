@@ -38,6 +38,7 @@
             </div>
           </div-->
           @foreach ($document as $doc)
+          @if (Auth::user()->id == $doc->sender_id)
           @foreach ($validation as $validar)
           @if ($doc->id == $validar->id_document)
             @if ($validar->val_defoinve == 1)
@@ -75,6 +76,7 @@
             @endif
           @endif
           @endforeach
+          @endif
           @endforeach
           <small></small>
         </h2>

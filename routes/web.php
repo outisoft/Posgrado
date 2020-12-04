@@ -34,8 +34,15 @@ Route::resource('/user', 'UserController', ['except'=>['create','store']])->name
 Route::resource('/perfil', 'PerfilController')->names('perfil');
 
 /*   Descarga   */
-
 Route::get('/Latter/{id}', 'LatterController@show')->name('download');
+
+/*    Register Check  */
+Route::post('/register/check', 'Auth\RegisterController@check')->name('register.check');
+
+/*    Documentos (denegados/aprobados)  */
+Route::resource('/documento', 'LatterController')->names('documento');
+Route::get('/denegados', 'LatterController@denegados')->name('denegados');
+
 
 
                  /* USUARIOS */
@@ -51,6 +58,7 @@ Route::resource('/coordinador', 'Users\CoordinadorController')->names('coordinad
 /* DEFOINVE */
 Route::resource('/defoinve', 'Users\DefoinveController', ['except'=>['create','store']])->names('defoinve');
 Route::get('/aprobados', 'Users\DefoinveController@aprobados')->name('aprobados');
+Route::get('defoinve/{defoinve}/denegar', 'Users\DefoinveController@denegar')->name('denegar');
 
 /* Direccion de Investigacion*/
 Route::resource('/di', 'Users\DiController', ['except'=>['create','store']])->names('di');

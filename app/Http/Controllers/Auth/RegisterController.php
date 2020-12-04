@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use DB;
 
 class RegisterController extends Controller
 {
@@ -54,6 +56,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'rol' => ['required'],
+            'adscripcion' => ['required'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -66,12 +69,68 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-      //dd($data);
+
+      /*
+       $role = $data['rol'];
+
+       $user = new User();
+
+       $user->name = $data['name'];
+       $user->email = $data['email'];
+       $user->rol = $data['rol'];
+       $user->adscripcion = $data['adscripcion'];
+       $user->password = Hash::make($data['password']);
+       $user->save();*/
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'rol' => $data['rol'],
+            'adscripcion' => $data['adscripcion'],
             'password' => Hash::make($data['password']),
         ]);
+
+        /*if($role == 'Investigador')
+        {
+          $role = 2;
+        }
+        elseif ($role == 'DEFOINVE') {
+          $role = 3;
+        }
+        elseif ($role == 'DI') {
+          $role = 4;
+        }
+        elseif ($role == 'DGIP') {
+          $role = 5;
+        }
+
+
+        $user = auth()->user();
+        dd($user);
+
+        $role_user = DB::table('role_user');
+        $role_user->role_id = $role;
+        $role_user->$role_user = $user->id;
+
+        $role_user->save();
+
+        return view('/home');*/
+    }
+
+    function check(Request $request)
+    {
+      if($request->get('email'))
+      {
+        $email = $request->get('email');
+        $data = DB::table("users")->where('email', $email)->count();
+        if($data > 0)
+        {
+          echo 'not_unique';
+        }
+        else
+        {
+          echo 'unique';
+        }
+      }
     }
 }

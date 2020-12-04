@@ -7,12 +7,6 @@
   <!-- Begin Page Content -->
   <div class="container-fluid">
     @include('custom.message')
-
-    <!-- Page Heading >
-    <h1 class="h3 mb-2 text-gray-800">Documentos</h1-->
-    <!--p class="mb-4">Documentos oficiales para realizar la solicitud de elaboracion de cartas de postulacion instuticional a profesores-investigadores de la <a target="_blank" href="https://unach.com">universidad autonoma de Chiapas</a>.</p-->
-
-    <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Documentos</h6>
@@ -37,7 +31,11 @@
               </tr>
             </tfoot>
             <tbody>
+              @foreach ($validacion as $val)
               @foreach ($documento as $documentos)
+              @if ($documentos->id == $val->id_document && $val->val_defoinve == 0)
+              @if ($documentos->descripcion == null)
+
               <tr>
                 <td>{{ $documentos->name}}</td>
                 <td>{{ $documentos->created_at->day}}-{{ $documentos->created_at->month}}-{{ $documentos->created_at->year}}</td>
@@ -46,6 +44,10 @@
                 </td>
                 <td><a target="_blank" href="#"><i class="bx bxs-download"></i></a></td>
               </tr>
+
+              @endif
+              @endif
+              @endforeach
               @endforeach
             </tbody>
           </table>

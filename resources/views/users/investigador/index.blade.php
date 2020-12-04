@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container">
-  <main class="py-4">
+  <!--main class="py-4"-->
 <!-- ======= Services Section ======= -->
 <section id="services" class="services row justify-content-center">
   <div class="container" data-aos="fade-up">
@@ -46,6 +46,6 @@
     </div>
   </div>
 </section><!-- End Services Section -->
-</main>
+<!--/main-->
 </div>
 @endsection

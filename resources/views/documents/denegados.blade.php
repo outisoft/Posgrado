@@ -1,11 +1,12 @@
 @extends('layouts.app')
 @section('content')
+
 <div class="container">
 <main class="py-4">
 
   <!-- Begin Page Content -->
   <div class="container-fluid">
-    <h1 class="h3 mb-2 text-gray-800">Documentos Aprobados</h1>
+    <h1 class="h3 mb-2 text-gray-800">Documentos Rechazados</h1>
     <div class="card shadow mb-4">
       <div class="card-body">
         <div class="table-responsive">
@@ -28,7 +29,7 @@
               @if (Auth::user()->rol == 'DEFOINVE')
               @foreach ($doc as $documento)
               @foreach ($validar as $val)
-              @if ($documento->id == $val->id_document && $val->val_defoinve == 1)
+              @if ($documento->id == $val->id_document && $documento->descripcion != null)
                 <tr>
                   <td>{{ $documento->name}}</td>
                   <td>{{ $documento->created_at->day}}-{{ $documento->created_at->month}}-{{ $documento->created_at->year}} </td>
@@ -41,7 +42,7 @@
              @elseif (Auth::user()->rol == 'DGIP')
              @foreach ($doc as $documento)
              @foreach ($validar as $val)
-             @if ($documento->id == $val->id_document && $val->val_dgip == 1)
+             @if ($documento->id == $val->id_document && $val->val_di == 1 && $documento->descripcion != null)
                <tr>
                  <td>{{ $documento->name}}</td>
                  <td>{{ $documento->created_at->day}}-{{ $documento->created_at->month}}-{{ $documento->created_at->year}} </td>
@@ -54,7 +55,7 @@
              @elseif (Auth::user()->rol == 'DI')
              @foreach ($doc as $documento)
              @foreach ($validar as $val)
-             @if ($documento->id == $val->id_document && $val->val_di == 1)
+             @if ($documento->id == $val->id_document && $val->val_defoinve == 1 && $documento->descripcion != null)
               <tr>
                <td>{{ $documento->name}}</td>
                <td>{{ $documento->created_at->day}}-{{ $documento->created_at->month}}-{{ $documento->created_at->year}} </td>

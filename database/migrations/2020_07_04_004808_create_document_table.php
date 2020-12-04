@@ -17,7 +17,8 @@ class CreateDocumentTable extends Migration
             $table->id();
             $table->string('documento');
             $table->string('name');
-            //$table->string('anexos');
+            $table->string('anexos')->nullable();
+            $table->string('descripcion')->nullable()->default(null);
             $table->unsignedBigInteger('sender_id')->unsigned()->nullable()->default(null);
             $table->unsignedBigInteger('recipient_id')->unsigned()->nullable()->default(null);
             $table->timestamps();

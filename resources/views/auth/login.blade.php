@@ -7,6 +7,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
     <title>UNACH - Login</title>
+    <link href="{{ asset('icons/unach.ico')}}" rel="shortcut icon" type="image/vnd.microsoft.icon" />
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
 
@@ -21,11 +22,11 @@
     <form class="form-signin" form method="POST" action="{{ route('login') }}">
       @csrf
       <img class="mb-4" src="icons/unach.ico" alt="" width="210" height="210">
-      <h1 class="h3 mb-3 font-weight-normal">{{ __('Login') }}</h1>
+      <h1 class="h3 mb-3 font-weight-normal">{{ __('Iniciar Sesion') }}</h1>
 
         <div class="form-group row">
-          <label for="Email" class="sr-only">{{ __('E-Mail Address') }}</label>
-          <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+          <label for="Email" class="sr-only">{{ __('Correo Electronico') }}</label>
+          <input id="email" type="email" placeholder="Correo Electronico" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
           <div class="col-md-6">
               @error('email')
@@ -37,8 +38,8 @@
         </div>
 
         <div class="form-group row">
-          <label for="Password" class="sr-only">{{ __('Password') }}</label>
-          <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+          <label for="Password" class="sr-only">{{ __('Contraseña') }}</label>
+          <input id="password" type="password" placeholder="Contraseña" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
           <div class="col-md-6">
 
@@ -60,11 +61,11 @@
         </div-->
 
         <button type="submit" class="btn btn-lg btn-primary btn-block">
-            {{ __('Login') }}
+            {{ __('Iniciar Sesion') }}
         </button>
         @if (Route::has('password.request'))
             <a class="btn btn-link" href="{{ route('password.request') }}">
-                {{ __('Forgot Your Password?') }}
+                {{ __('¿Olvidaste tu contraseña?') }}
             </a>
         @endif
 

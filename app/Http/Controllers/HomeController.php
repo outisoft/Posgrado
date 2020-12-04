@@ -46,7 +46,8 @@ class HomeController extends Controller
       if($user->rol == "DEFOINVE")
       {
           $documento = Document::orderBy('id','Desc')->paginate(10);
-          return view("users.defoinve.index", ['documento'=>$documento]);
+          $validacion = validation::orderBy('id','Desc')->paginate(10);
+          return view("users.defoinve.index", ['documento'=>$documento], ['validacion'=>$validacion]);
       }
       if($user->rol == "DI")
       {
