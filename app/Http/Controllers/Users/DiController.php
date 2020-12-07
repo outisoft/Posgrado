@@ -50,7 +50,7 @@ class DiController extends Controller
     {
         //dd($di);
 
-        $documento = Document::orderBy('name')->get();
+        $documento = Document::orderBy('id','Desc')->paginate(10);
 
         return view("users.di.view", compact('documento', 'di'));
     }

@@ -33,7 +33,7 @@ class DefoinveController extends Controller
 
     public function aprobados()
     {
-        $doc = Document::get();
+        $doc = Document::orderBy('id','Desc')->paginate(10);
         $validar = validation::get();
         return view('users.defoinve.aprobados', compact('doc', 'validar'));
     }

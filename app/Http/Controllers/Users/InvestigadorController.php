@@ -67,7 +67,7 @@ class InvestigadorController extends Controller
     public function historial()
     {
         $user = auth()->user();
-        $documents = Document::orderBy('id')->get();
+        $documents = Document::orderBy('id','Desc')->paginate(10);
         $validation = validation::orderBy('id')->get();
         //dd($document);
         return view('users.investigador.historial', compact('user', 'documents', 'validation'));
@@ -82,6 +82,11 @@ class InvestigadorController extends Controller
     public function store(Request $request)
     {
       //dd($request);
+      $validatedData = $request->validate([
+        'name' => 'required',
+        'documento' => ['required','mimes:pdf'],
+        'anexo' => ['mimes:pdf'],
+    ]);
           $user = auth()->user();
           $document = new Document();
           //$path = Storage::putFile('public', $request->file('documento'));
@@ -122,7 +127,7 @@ class InvestigadorController extends Controller
     public function show(Document $investigador)
     {
       //dd($investigador);
-        $documento = Document::orderBy('id','Desc')->get();
+        $documento = Document::orderBy('id','Desc')->paginate(10);
         return view('users.investigador.view', compact('documento', 'investigador'));
     }
 

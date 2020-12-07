@@ -51,6 +51,7 @@
               @endforeach
             </tbody>
           </table>
+          {{ $documento->links() }}
         </div>
       </div>
     </div>

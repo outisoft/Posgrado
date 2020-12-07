@@ -48,7 +48,7 @@ class DgipController extends Controller
      */
     public function show(Document $dgip)
     {
-      $documento = Document::orderBy('name')->get();
+      $documento = Document::orderBy('id','Desc')->paginate(10);
       return view("users.dgip.view", compact('documento', 'dgip'));
     }
 

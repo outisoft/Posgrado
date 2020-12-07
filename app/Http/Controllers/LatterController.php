@@ -31,7 +31,7 @@ class LatterController extends Controller
 
     public function denegados()
     {
-      $doc = Document::get();
+      $doc = Document::orderBy('id','Desc')->paginate(10);
       $validar = validation::get();
        return view('documents.denegados', compact('doc', 'validar'));
     }

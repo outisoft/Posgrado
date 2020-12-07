@@ -68,6 +68,7 @@
 
            </tbody>
          </table>
+         {{ $doc->links() }}
        </div>
      </div>
    </div>
