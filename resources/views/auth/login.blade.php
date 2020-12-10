@@ -21,8 +21,9 @@
   <body class="text-center">
     <form class="form-signin" form method="POST" action="{{ route('login') }}">
       @csrf
-      <img class="mb-4" src="icons/unach.ico" alt="" width="210" height="210">
+      <img class="mb-4" src="{{ asset('icons/unach.ico')}}" alt="" width="210" height="210">
       <h1 class="h3 mb-3 font-weight-normal">{{ __('Iniciar Sesion') }}</h1>
+      @include('custom.message')
 
         <div class="form-group row">
           <label for="Email" class="sr-only">{{ __('Correo Electronico') }}</label>
@@ -64,7 +65,7 @@
             {{ __('Iniciar Sesion') }}
         </button>
         @if (Route::has('password.request'))
-            <a class="btn btn-link" href="{{ route('password.request') }}">
+            <a class="btn btn-link" href="{{ route('recover') }}">
                 {{ __('¿Olvidaste tu contraseña?') }}
             </a>
         @endif

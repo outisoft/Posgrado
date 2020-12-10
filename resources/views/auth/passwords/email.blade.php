@@ -20,7 +20,7 @@
   </head>
   <body class="text-center">
     <div class="container">
-
+      @include('custom.message')
       <!-- Outer Row -->
       <div class="row justify-content-center">
 
@@ -37,10 +37,10 @@
                   <div class="p-5">
                     <div class="text-center">
                       <h1 class="h4 text-gray-900 mb-2">¿Olvidaste tu contraseña?</h1>
-                      <p class="mb-4">We get it, stuff happens. Just enter your email address below and we'll send you a link to reset your password!</p>
+                      <p class="mb-4">Ingresa tu correo electronico, te enviaremos un codigo de verificacio!</p>
                     </div>
 
-                    <form method="POST" action="{{ route('password.email') }}">
+                    <form method="POST" action="{{ route('recover') }}">
                         @csrf
 
                       <div class="form-group">

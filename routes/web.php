@@ -24,6 +24,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+/*     Recuperar Contraseña     */
+Route::get('/recover', 'PasswordController@getRecover')->name('recover');
+Route::post('/recover', 'PasswordController@postRecover')->name('recover');
+Route::get('/reset', 'PasswordController@getReset')->name('reset');
+Route::post('/reset', 'PasswordController@postReset')->name('reset');
+
 /* Administrador de roles */
 Route::resource('/role', 'RoleController')->names('role');
 
