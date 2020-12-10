@@ -50,6 +50,19 @@
     </form>
     </div>
   </div>
+  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Anexo de {{ $defoinve->name }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <td>
+        <iframe src="{{ Storage::url($defoinve->anexos)}}" width="1042" height="1222" style="border: none;">
+        </iframe>
+      </td>
+    </tbody>
+  </table>
   </main>
 </div>
 

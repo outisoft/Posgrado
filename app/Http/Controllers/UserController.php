@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Permission\Models\Role;
 use App\User;
+use Hash, Auth;
 
 class UserController extends Controller
 {
@@ -27,9 +28,28 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function password()
     {
-        //
+        return view('auth.passwords.reset');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $rules = [
+            'password' => 'required',
+            'newpassword' => 'required|confirmed|min:8',
+        ];
+        if(Hash::check($request->password, Auth::user()->password))
+        {
+            $user = new User;
+            $user->where('email', '=', Auth::user()->email)
+                ->update(['password' => bcrypt($request->newpassword)]);
+            return redirect('/home')->with('status_success', 'Contraseña actualizada con exito');
+        }
+        else
+        {
+            return redirect('/password')->with('status_error', 'Los datos son incorrectos.');
+        }
     }
 
     /**

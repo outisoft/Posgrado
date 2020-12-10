@@ -18,7 +18,7 @@
               <tr>
                 <th>Nombre</th>
                 <th>Fecha</th>
-                <th>Ver</th>
+                <th>Documentos</th>
                 <th>Descargar</th>
               </tr>
             </thead>
@@ -26,7 +26,7 @@
               <tr>
                 <th>Nombre</th>
                 <th>Fecha</th>
-                <th>Ver</th>
+                <th>Documentos</th>
                 <th>Descargar</th>
               </tr>
             </tfoot>
@@ -42,7 +42,7 @@
                 <td>
                   <a class="btn btn-info" href="{{ route('defoinve.show', $documentos->id)}}">Ver</a>
                 </td>
-                <td><a target="_blank" href="#"><i class="bx bxs-download"></i></a></td>
+                <td><a target="_blank" href="download/{{$documentos->documento}}" download="{{$documentos->documento}}"><i class="bx bxs-download"></i></a></td>
               </tr>
 
               @endif

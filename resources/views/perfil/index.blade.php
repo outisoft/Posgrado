@@ -15,6 +15,7 @@
           <p>Adscripcion: {{ $user->adscripcion}}</p>
           <p>Role: {{ $user->rol}}</p>
           <p><a class="btn btn-secondary" href="{{ route('perfil.edit', Auth::user()->id )}}" role="button">Editar &raquo;</a></p>
+          <p><a class="btn btn-secondary" href="{{ route('password', Auth::user()->id )}}" role="button">Cambiar Contraseña</a></p>
 
         </div><!-- /.col-lg-4 -->
 
